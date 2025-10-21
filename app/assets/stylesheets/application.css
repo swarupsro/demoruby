@@ -10,3 +10,55 @@ body {
 .card {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
+
+/* Soft action buttons for todo list to improve visual hierarchy */
+.todo-actions .btn {
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-weight: 500;
+  border: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.todo-actions .btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-soft-primary {
+  background-color: rgba(13, 110, 253, 0.12);
+  color: #0d6efd;
+}
+
+.btn-soft-primary:hover,
+.btn-soft-primary:focus {
+  background-color: #0d6efd;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(13, 110, 253, 0.25);
+}
+
+.btn-soft-secondary {
+  background-color: rgba(108, 117, 125, 0.12);
+  color: #6c757d;
+}
+
+.btn-soft-secondary:hover,
+.btn-soft-secondary:focus {
+  background-color: #6c757d;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(108, 117, 125, 0.25);
+}
+
+.btn-soft-danger {
+  background-color: rgba(220, 53, 69, 0.12);
+  color: #dc3545;
+}
+
+.btn-soft-danger:hover,
+.btn-soft-danger:focus {
+  background-color: #dc3545;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(220, 53, 69, 0.25);
+}
+.todo-actions form {
+  margin: 0;
+}
