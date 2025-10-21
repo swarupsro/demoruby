@@ -15,4 +15,7 @@ Rails.application.configure do
 
   # Enable extra logging to make simulated probes visible to trainees.
   config.log_level = :debug
+
+  # Provide a default secret key for lab mode so Rails can boot without credentials.
+  config.secret_key_base = ENV.fetch("SECRET_KEY_BASE", "lab-mode-secret-key-base-change-me")
 end
