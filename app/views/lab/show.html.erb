@@ -34,7 +34,7 @@
         <%= button_to "Force Simulation On", lab_toggle_path(state: :on), method: :post, class: "btn btn-primary" %>
         <%= button_to "Force Simulation Off", lab_toggle_path(state: :off), method: :post, class: "btn btn-outline-secondary" %>
         <%= button_to "Reset Override", lab_toggle_path(state: :reset), method: :post, class: "btn btn-outline-dark" %>
-        <%= button_to "Clear Probe Log", lab_toggle_path(state: :clear_logs), method: :post, class: "btn btn-danger", form: { data: { turbo_confirm: "Clear simulated probe history?" } } %>
+        <%= button_to "Clear Problem Log", lab_toggle_path(state: :clear_logs), method: :post, class: "btn btn-danger", form: { data: { turbo_confirm: "Clear simulated probe history?" } } %>
       </div>
     </div>
   </div>
