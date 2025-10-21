@@ -16,7 +16,7 @@
 2. **Clone or copy** this repository and change into the project directory:
    ```bash
    git clone https://github.com/swarupsro/demoruby.git
-   cd todo_lab_sim
+   cd demoruby
    ```
 3. **Install Ruby gems**:
    ```bash
