@@ -15,7 +15,7 @@
 1. **Install prerequisites** listed above, including Ruby 3.2.x and SQLite.
 2. **Clone or copy** this repository and change into the project directory:
    ```bash
-   git clone https://github.com/your-org/todo_lab_sim.git
+   git clone https://github.com/swarupsro/demoruby.git
    cd todo_lab_sim
    ```
 3. **Install Ruby gems**:
