@@ -1,0 +1,20 @@
+<div class="card mb-3">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h2 class="mb-0"><%= @todo.title %></h2>
+    <% if @todo.completed? %>
+      <span class="badge bg-success">Completed</span>
+    <% else %>
+      <span class="badge bg-secondary">Open</span>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <p><%= simple_format(@todo.description) %></p>
+    <p class="text-muted">Created <%= time_ago_in_words(@todo.created_at) %> ago.</p>
+  </div>
+</div>
+
+<div class="d-flex gap-2">
+  <%= link_to "Edit", edit_todo_path(@todo), class: "btn btn-primary" %>
+  <%= link_to "Back", todos_path, class: "btn btn-secondary" %>
+  <%= button_to "Delete", @todo, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+</div>

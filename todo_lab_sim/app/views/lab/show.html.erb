@@ -1,0 +1,97 @@
+<div class="container py-4">
+  <h1 class="mb-3">Todo Lab Simulation Console</h1>
+  <p class="lead">
+    This page exposes controls for the simulated time-based blind SQL injection layer.
+    The simulation never executes raw SQL; it only inspects payloads, introduces artificial delay,
+    and records attempts so practitioners can rehearse detection workflows safely.
+  </p>
+
+  <% if flash[:notice] %>
+    <div class="alert alert-success"><%= flash[:notice] %></div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-warning"><%= flash[:alert] %></div>
+  <% end %>
+
+  <div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span>Simulation Status</span>
+      <span class="badge bg-<%= lab_mode? ? 'success' : 'secondary' %>">
+        <%= lab_mode? ? "Active" : "Inactive" %>
+      </span>
+    </div>
+    <div class="card-body">
+      <p>
+        <strong>Environment Default:</strong>
+        <%= Rails.application.config.x.lab_mode_enabled ? "Enabled" : "Disabled" %>
+      </p>
+      <p>
+        <strong>Explicit Override:</strong>
+        <%= @override_state.nil? ? "None" : @override_state ? "Forced On" : "Forced Off" %>
+      </p>
+      <div class="d-flex gap-2 flex-wrap">
+        <%= button_to "Force Simulation On", lab_toggle_path(state: :on), method: :post, class: "btn btn-primary" %>
+        <%= button_to "Force Simulation Off", lab_toggle_path(state: :off), method: :post, class: "btn btn-outline-secondary" %>
+        <%= button_to "Reset Override", lab_toggle_path(state: :reset), method: :post, class: "btn btn-outline-dark" %>
+        <%= button_to "Clear Probe Log", lab_toggle_path(state: :clear_logs), method: :post, class: "btn btn-danger", form: { data: { turbo_confirm: "Clear simulated probe history?" } } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">Current Simulation Rules</div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-4">Delay Marker</dt>
+        <dd class="col-sm-8"><code><%= @simulation_config[:delay_marker] %></code></dd>
+
+        <dt class="col-sm-4">Delay Seconds</dt>
+        <dd class="col-sm-8"><%= @simulation_config[:delay_seconds] %></dd>
+
+        <dt class="col-sm-4">Filtered Characters</dt>
+        <dd class="col-sm-8">
+          <% @simulation_config[:filtered_patterns].each do |pattern| %>
+            <code class="me-2"><%= pattern %></code>
+          <% end %>
+        </dd>
+      </dl>
+      <p class="text-muted">
+        Trainers can adjust these defaults in <code>config/lab_simulation.yml</code> or by setting the
+        corresponding environment variables inside Docker.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Recent Probe Attempts (newest first)</div>
+    <div class="card-body table-responsive">
+      <% if @probe_log.any? %>
+        <table class="table table-striped align-middle">
+          <thead>
+            <tr>
+              <th scope="col">Timestamp</th>
+              <th scope="col">Payload</th>
+              <th scope="col">Result</th>
+              <th scope="col">IP</th>
+              <th scope="col">Metadata</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @probe_log.each do |entry| %>
+              <tr>
+                <td><%= entry[:at].in_time_zone.strftime("%F %T") %></td>
+                <td><code><%= entry[:payload].presence || "(empty)" %></code></td>
+                <td><span class="badge bg-<%= entry[:result] == :time_delay ? 'warning' : entry[:result] == :filtered ? 'secondary' : 'success' %>"><%= entry[:result] %></span></td>
+                <td><%= entry[:ip] || "N/A" %></td>
+                <td><%= (entry[:metadata] || {}).to_json %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="text-muted mb-0">No simulated probes recorded yet.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

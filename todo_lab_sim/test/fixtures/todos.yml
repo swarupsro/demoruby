@@ -1,0 +1,4 @@
+sample:
+  title: "Sample todo"
+  description: "Initial record for tests"
+  completed: false

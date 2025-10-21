@@ -1,0 +1,20 @@
+defaults: &defaults
+  delay_marker: "[[SqliProbe]]"
+  filtered_patterns:
+    - "'"
+    - ";"
+    - "--"
+  delay_seconds: 3
+  log_limit: 50
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+lab:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,0 +1,58 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Bundler
+/vendor/bundle/
+
+# Temporary files
+/tmp/
+/log/*.log
+/log/*.pid
+/log/*.old
+/log/*.log.*
+
+# Byebug command history
+.byebug_history
+
+# Node/Yarn artifacts
+/node_modules/
+yarn-debug.log*
+yarn-error.log*
+.yarn-integrity
+
+# SQLite databases
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/db/*.sqlite3-*
+/db/*.sqlite3-*-wal
+/db/*.sqlite3-*-shm
+
+# Credentials and environment settings
+/config/master.key
+/config/credentials/*.key
+/config/credentials/*.enc
+
+# Storage and uploaded files
+/storage/
+/public/assets/
+/public/packs/
+/public/packs-test/
+/public/uploads/
+
+# Coverage reports
+/coverage/
+
+# Bundler/Box related
+.bundle/
+.rspec
+
+# IDE and editor folders
+.idea/
+.vscode/
+*.swp
+*~
+
+# macOS
+.DS_Store
+
+# Docker artifacts
+/vendor/docker/
