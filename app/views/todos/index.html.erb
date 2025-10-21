@@ -30,10 +30,10 @@
           <% end %>
         </td>
         <td class="text-end">
-          <div class="btn-group btn-group-sm todo-actions" role="group" aria-label="Todo actions">
-            <%= link_to "Show", todo, class: "btn btn-soft-primary" %>
-            <%= link_to "Edit", edit_todo_path(todo), class: "btn btn-soft-warning" %>
-            <%= button_to "Delete", todo, method: :delete, class: "btn btn-soft-danger", data: { turbo_confirm: "Are you sure?" }, form: { class: "d-inline" } %>
+          <div class="btn-group btn-group-sm" role="group" aria-label="Todo actions">
+            <%= link_to "Show", todo, class: "btn btn-success" %>
+            <%= link_to "Edit", edit_todo_path(todo), class: "btn btn-warning text-dark" %>
+            <%= link_to "Delete", todo, class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
           </div>
         </td>
       </tr>
