@@ -9,6 +9,8 @@ RUN bundle install
 
 COPY . .
 
+RUN chmod +x bin/*
+
 COPY docker-entrypoint.sh /usr/bin/docker-entrypoint
 RUN chmod +x /usr/bin/docker-entrypoint
 
@@ -18,4 +20,4 @@ ENV RAILS_ENV=lab \
 EXPOSE 3000
 
 ENTRYPOINT ["docker-entrypoint"]
-CMD ["bash", "-lc", "bin/rails db:prepare && bin/rails server -b 0.0.0.0 -p 3000"]
+CMD ["bash", "-lc", "bundle exec rails db:prepare && bundle exec rails server -b 0.0.0.0 -p 3000"]
