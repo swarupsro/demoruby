@@ -11,7 +11,7 @@ services:
       LAB_MODE: "1"
     volumes:
       - .:/app
-      - bundle_cache:/app/vendor/bundle
+      - bundle_cache:/usr/local/bundle
     tty: true
     stdin_open: true
 

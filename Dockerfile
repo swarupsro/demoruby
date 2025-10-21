@@ -4,16 +4,18 @@ RUN apt-get update -qq && apt-get install -y build-essential libsqlite3-dev node
 
 WORKDIR /app
 
-COPY Gemfile ./
-RUN bundle config set --local path 'vendor/bundle' \
-  && bundle install
+COPY Gemfile* ./
+RUN bundle install
 
 COPY . .
 
+COPY docker-entrypoint.sh /usr/bin/docker-entrypoint
+RUN chmod +x /usr/bin/docker-entrypoint
+
 ENV RAILS_ENV=lab \
-    LAB_MODE=1 \
-    BUNDLE_PATH=vendor/bundle
+    LAB_MODE=1
 
 EXPOSE 3000
 
+ENTRYPOINT ["docker-entrypoint"]
 CMD ["bash", "-lc", "bin/rails db:prepare && bin/rails server -b 0.0.0.0 -p 3000"]
