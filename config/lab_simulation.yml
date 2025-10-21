@@ -1,5 +1,5 @@
 defaults: &defaults
-delay_marker: "[[SQLi Problem]]"
+  delay_marker: "[[SQLi Problem]]"
   filtered_patterns:
     - "'"
     - ";"
