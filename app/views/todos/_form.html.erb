@@ -12,7 +12,7 @@
 
   <div class="mb-3">
     <%= form.label :title, class: "form-label" %>
-    <%= form.text_field :title, class: "form-control", required: true, autofocus: true, placeholder: "Run time-based probe [[SqliProbe]]" %>
+    <%= form.text_field :title, class: "form-control", required: true, autofocus: true, placeholder: "Run time-based probe [[SQLi Problem]]" %>
     <div class="form-text">
       Titles containing the marker <code><%= SimulatedInjectionService.delay_marker %></code> trigger the simulated delay.
     </div>

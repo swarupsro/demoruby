@@ -18,7 +18,7 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
 
         post todos_url, params: {
           todo: {
-            title: "Blind probe [[SqliProbe]]",
+            title: "Blind probe [[SQLi Problem]]",
             description: "testing delay simulation",
             completed: false
           }
@@ -33,7 +33,7 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
 
     last_entry = SimulatedInjectionService.log_entries.last
     assert_equal :time_delay, last_entry[:result]
-    assert_equal "Blind probe [[SqliProbe]]", last_entry[:payload]
+    assert_equal "Blind probe [[SQLi Problem]]", last_entry[:payload]
   end
 
   test "filtered characters short-circuit without delay" do

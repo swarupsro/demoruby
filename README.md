@@ -57,7 +57,7 @@
 The defaults live in `config/lab_simulation.yml`:
 
 ```yaml
-delay_marker: "[[SqliProbe]]"
+delay_marker: "[[SQLi Problem]]"
 filtered_patterns:
   - "'"
   - ";"
@@ -68,7 +68,7 @@ log_limit: 50
 
 `SimulatedInjectionService.check` is invoked before `create` and `update`:
 
-- Payloads containing `[[SqliProbe]]` trigger a sleep (`delay_seconds`) and log a `:time_delay` result.
+- Payloads containing `[[SQLi Problem]]` trigger a sleep (`delay_seconds`) and log a `:time_delay` result.
 - Payloads containing filtered characters immediately block the save, surface a validation error, and log `:filtered`.
 - All other payloads log `:pass`.
 
@@ -81,7 +81,7 @@ log_limit: 50
 ## Lab Exercises
 
 1. **Baseline Requests:** Create a Todo with a normal title. Observe no additional latency and a `:pass` entry on `/lab`.
-2. **Time-Based Probing:** Submit titles containing `[[SqliProbe]]`. Measure the response delay with tools like Burp Intruder, Fiddler, or curl while tailing logs.
+2. **Time-Based Probing:** Submit titles containing `[[SQLi Problem]]`. Measure the response delay with tools like Burp Intruder, Fiddler, or curl while tailing logs.
 3. **Filtered Characters:** Attempt payloads with single quotes, semicolons, or comment tokens. Confirm the immediate validation error and absence of delay.
 4. **Header Inspection:** In `lab` mode the controller emits `X-Lab-Simulation: time_delay` for delayed responses—use this to validate instrumentation.
 5. **Log Analysis:** Review `/lab` to correlate timestamps, payloads, results, and request metadata.
