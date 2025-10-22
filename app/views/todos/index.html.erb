@@ -3,10 +3,12 @@
   <%= link_to "New Todo", new_todo_path, class: "btn btn-success" %>
 </div>
 
-<p class="text-muted">
-  Use the lab marker <code><%= SimulatedInjectionService.delay_marker %></code> in a title to trigger the simulated
-  time delay. Suspicious characters like <%= SimulatedInjectionService.filtered_patterns.map { |p| "<code>#{p}</code>" }.join(", ").html_safe %> are filtered instantly.
-</p>
+<% if admin_user? %>
+  <p class="text-muted">
+    Use the lab marker <code><%= SimulatedInjectionService.delay_marker %></code> in a title to trigger the simulated
+    time delay. Suspicious characters like <%= SimulatedInjectionService.filtered_patterns.map { |p| "<code>#{p}</code>" }.join(", ").html_safe %> are filtered instantly.
+  </p>
+<% end %>
 
 <table class="table table-hover">
   <thead>
