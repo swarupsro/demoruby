@@ -1,4 +1,5 @@
 class LabController < ApplicationController
+  before_action :require_admin
   before_action :ensure_lab_mode
 
   def show

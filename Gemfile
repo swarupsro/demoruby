@@ -13,6 +13,7 @@ gem "importmap-rails"
 gem "jbuilder"
 gem "redis", "~> 5.0"
 gem "bootsnap", require: false
+gem "bcrypt", "~> 3.1"
 
 group :development, :test do
   gem "byebug"

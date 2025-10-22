@@ -20,15 +20,36 @@
             <li class="nav-item">
               <%= link_to "Todos", todos_path, class: "nav-link #{current_page?(todos_path) ? 'active' : ''}" %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Lab Console", lab_path, class: "nav-link #{current_page?(lab_path) ? 'active' : ''}" %>
-            </li>
+            <% if admin_user? %>
+              <li class="nav-item">
+                <%= link_to "System Monitor", lab_path, class: "nav-link #{current_page?(lab_path) ? 'active' : ''}" %>
+              </li>
+            <% end %>
           </ul>
-          <% if lab_mode? %>
-            <span class="badge bg-warning text-dark">Simulation Active</span>
-          <% else %>
-            <span class="badge bg-secondary">Simulation Inactive</span>
-          <% end %>
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item me-3">
+              <% if lab_mode? %>
+                <span class="badge bg-warning text-dark">Simulation Active</span>
+              <% else %>
+                <span class="badge bg-secondary">Simulation Inactive</span>
+              <% end %>
+            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <span class="navbar-text text-white me-3">Signed in as <%= current_user.name %></span>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log out", session_path, data: { turbo_method: :delete }, class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign up", new_user_path, class: "nav-link #{current_page?(new_user_path) ? 'active' : ''}" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log in", new_session_path, class: "nav-link #{current_page?(new_session_path) ? 'active' : ''}" %>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </nav>
