@@ -41,7 +41,7 @@
                 <span class="navbar-text text-white me-3">Signed in as <%= current_user.name %></span>
               </li>
               <li class="nav-item">
-                <%= link_to "Log out", session_path, data: { turbo_method: :delete }, class: "nav-link" %>
+                <%= button_to "Log out", session_path, method: :delete, form_class: "d-inline", class: "btn btn-link nav-link p-0" %>
               </li>
             <% else %>
               <li class="nav-item">
