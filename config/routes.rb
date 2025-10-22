@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get "/lab", to: "lab#show"
   post "/lab/toggle", to: "lab#toggle"
 
-  root "todos#index"
+  root "sessions#new"
 end

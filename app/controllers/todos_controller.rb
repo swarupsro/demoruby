@@ -1,20 +1,21 @@
 class TodosController < ApplicationController
+  before_action :require_login
   before_action :set_todo, only: %i[show edit update destroy]
 
   def index
-    @todos = Todo.order(created_at: :desc)
+    @todos = current_user.todos.order(created_at: :desc)
   end
 
   def show; end
 
   def new
-    @todo = Todo.new
+    @todo = current_user.todos.new
   end
 
   def edit; end
 
   def create
-    @todo = Todo.new(todo_params)
+    @todo = current_user.todos.new(todo_params)
     simulation_outcome = run_simulation_check(:create)
     if simulation_outcome == :blocked
       render :new, status: :unprocessable_entity and return
@@ -48,7 +49,7 @@ class TodosController < ApplicationController
   private
 
   def set_todo
-    @todo = Todo.find(params[:id])
+    @todo = current_user.todos.find(params[:id])
   end
 
   def todo_params

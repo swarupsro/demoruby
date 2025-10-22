@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Account created successfully."
+      redirect_to todos_path, notice: "Account created successfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,6 +24,6 @@ class UsersController < ApplicationController
   def redirect_if_signed_in
     return unless user_signed_in?
 
-    redirect_to root_path, notice: "You are already signed in."
+    redirect_to todos_path, notice: "You are already signed in."
   end
 end
