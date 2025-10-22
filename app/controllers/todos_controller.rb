@@ -1,6 +1,7 @@
 class TodosController < ApplicationController
   before_action :require_login
   before_action :set_todo, only: %i[show edit update destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :redirect_to_not_found
 
   def index
     @todos = current_user.todos.order(created_at: :desc)
@@ -81,5 +82,9 @@ class TodosController < ApplicationController
     end
 
     :proceed
+  end
+
+  def redirect_to_not_found
+    redirect_to error_path
   end
 end
